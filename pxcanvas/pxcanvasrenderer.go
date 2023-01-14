@@ -13,7 +13,7 @@ type PxCanvasRenderer struct {
 
 // WidgetRenderer interface implementation
 func (renderer *PxCanvasRenderer) MinSize() fyne.Size {
-	return renderer.PxCanvas.DrawingArea
+	return renderer.pxCanvas.DrawingArea
 }
 
 // WidgetRenderer interface implementation
@@ -39,26 +39,26 @@ func (renderer *PxCanvasRenderer) Layout(size fyne.Size) {
 
 // WidgetRenderer interface implementation
 func (renderer *PxCanvasRenderer) Refresh() {
-	if renderer.PxCanvas.reloadImage {
-		renderer.canvasImage = canvas.NewImageFromImage(renderer.PxCanvas.pixelData)
+	if renderer.pxCanvas.reloadImage {
+		renderer.canvasImage = canvas.NewImageFromImage(renderer.pxCanvas.pixelData)
 		renderer.canvasImage.ScaleMode = canvas.ImageScalePixels
 		renderer.canvasImage.FillMode = canvas.ImageFillContain
-		renderer.PxCanvas.reloadImage = false
+		renderer.pxCanvas.reloadImage = false
 	}
-	renderer.Layout(renderer.PxCanvas.Size())
+	renderer.Layout(renderer.pxCanvas.Size())
 	canvas.Refresh(renderer.canvasImage)
 }
 
 func (renderer *PxCanvasRenderer) LayoutCanvas(size fyne.Size) {
-	imgPxWidth := renderer.PxCanvas.PxCols
-	imgPxHeight := renderer.PxCanvas.PxRows
-	pxSize := renderer.PxCanvas.PxSize
-	renderer.canvasImage.Move(fyne.NewPos(renderer.PxCanvas.CanvasOffset.X, renderer.PxCanvas.CanvasOffset.Y))
+	imgPxWidth := renderer.pxCanvas.PxCols
+	imgPxHeight := renderer.pxCanvas.PxRows
+	pxSize := renderer.pxCanvas.PxSize
+	renderer.canvasImage.Move(fyne.NewPos(renderer.pxCanvas.CanvasOffset.X, renderer.pxCanvas.CanvasOffset.Y))
 	renderer.canvasImage.Resize(fyne.NewSize(float32(imgPxWidth*pxSize), float32(imgPxHeight*pxSize)))
 }
 
 func (renderer *PxCanvasRenderer) Layoutborder(size fyne.Size) {
-	offset := renderer.PxCanvas.CanvasOffset
+	offset := renderer.pxCanvas.CanvasOffset
 	imgHeight := renderer.canvasImage.Size().Height
 	imgWidth := renderer.canvasImage.Size().Width
 

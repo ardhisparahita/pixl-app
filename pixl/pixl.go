@@ -4,6 +4,7 @@ import (
 	"image/color"
 
 	"ardhisparahita.io/pixl/apptype"
+	"ardhisparahita.io/pixl/pxcanvas"
 	"ardhisparahita.io/pixl/swatch"
 	"ardhisparahita.io/pixl/ui"
 	"fyne.io/fyne/v2"
