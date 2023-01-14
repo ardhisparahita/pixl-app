@@ -46,7 +46,7 @@ func (renderer *PxCanvasRenderer) Refresh() {
 		renderer.PxCanvas.reloadImage = false
 	}
 	renderer.Layout(renderer.PxCanvas.Size())
-	canvas.Refresh()
+	canvas.Refresh(renderer.canvasImage)
 }
 
 func (renderer *PxCanvasRenderer) LayoutCanvas(size fyne.Size) {
