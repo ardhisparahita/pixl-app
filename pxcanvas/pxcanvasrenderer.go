@@ -6,7 +6,7 @@ import (
 )
 
 type PxCanvasRenderer struct {
-	PxCanvas     *PxCanvas
+	pxCanvas     *PxCanvas
 	canvasImage  *canvas.Image
 	canvasBorder []canvas.Line
 }
