@@ -4,7 +4,6 @@ import (
 	"image/color"
 
 	"ardhisparahita.io/pixl/swatch"
-	"fyne.io/fyne.v2/container"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
 )
