@@ -2,7 +2,10 @@ module ardhisparahita.io/pixl
 
 go 1.19
 
-require fyne.io/fyne/v2 v2.3.0
+require (
+	fyne.io/fyne/v2 v2.3.0
+	github.com/lusingander/colorpicker v0.7.1
+)
 
 require (
 	fyne.io/systray v1.10.1-0.20221115204952-d16a6177e6f1 // indirect
