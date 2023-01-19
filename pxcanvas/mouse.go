@@ -1,6 +1,7 @@
 package pxcanvas
 
 import (
+	"ardhisparahita.io/pixl/pxcanvas/brush"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/driver/desktop"
 )
@@ -22,4 +23,8 @@ func (PxCanvas *PxCanvas) MouseIn(ev *desktop.MouseEvent) {
 
 func (PxCanvas *PxCanvas) MouseOut() {
 
+}
+
+func (PxCanvas *PxCanvas) MouseDown(ev *desktop.MouseEvent) {
+	brush.TryBrush(PxCanvas.appState, PxCanvas, ev)
 }
