@@ -116,3 +116,22 @@ func (PxCanvas *PxCanvas) MouseToCanvasXY(ev *desktop.MouseEvent) (*int, *int) {
 
 	return &x, &y
 }
+
+func (PxCanvas *PxCanvas) LoadImage(img image.Image) {
+	dimensions := img.Bounds()
+
+	PxCanvas.PxCanvasConfig.PxCols = dimensions.Dx()
+	PxCanvas.PxCanvasConfig.PxRows = dimensions.Dy()
+
+	PxCanvas.pixelData = img
+	PxCanvas.reloadImage = true
+	PxCanvas.Refresh()
+}
+
+func (PxCanvas *PxCanvas) NewDrawing(cols, rows int) {
+	PxCanvas.appState.SetFilePath("")
+	PxCanvas.PxCols = cols
+	PxCanvas.PxRows = rows
+	pixelData := NewBlankImage(cols, rows, color.NRGBA{128, 128, 128, 255})
+	PxCanvas.LoadImage(pixelData)
+}
