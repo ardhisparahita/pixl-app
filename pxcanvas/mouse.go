@@ -12,6 +12,9 @@ func (PxCanvas *PxCanvas) Scrolled(ev *fyne.ScrollEvent) {
 }
 
 func (PxCanvas *PxCanvas) MouseMoved(ev *desktop.MouseEvent) {
+	if x, y := PxCanvas.MouseToCanvasXY(ev); x != nil && y != nil {
+		brush.TryBrush(PxCanvas.appState, PxCanvas, ev)
+	}
 	PxCanvas.TryPan(PxCanvas.mouseState.previousCoord, ev)
 	PxCanvas.Refresh()
 	PxCanvas.mouseState.previousCoord = &ev.PointEvent
@@ -27,4 +30,8 @@ func (PxCanvas *PxCanvas) MouseOut() {
 
 func (PxCanvas *PxCanvas) MouseDown(ev *desktop.MouseEvent) {
 	brush.TryBrush(PxCanvas.appState, PxCanvas, ev)
+}
+
+func (PxCanvas *PxCanvas) MouseUp(ev *desktop.MouseEvent) {
+
 }
