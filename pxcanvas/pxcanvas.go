@@ -34,7 +34,7 @@ func (PxCanvas *PxCanvas) Bounds() image.Rectangle {
 	return image.Rect(x0, y0, x1, y1)
 }
 
-func InBounds(pos *fyne.Position, bounds image.Rectangle) bool {
+func InBounds(pos fyne.Position, bounds image.Rectangle) bool {
 	if pos.X >= float32(bounds.Min.X) &&
 		pos.X < float32(bounds.Max.X) &&
 		pos.Y >= float32(bounds.Min.Y) &&
@@ -88,4 +88,31 @@ func (PxCanvas *PxCanvas) TryPan(previousCoord *fyne.PointEvent, ev *desktop.Mou
 	if previousCoord != nil && ev.Button == desktop.MouseButtonTertiary {
 		PxCanvas.Pan(*previousCoord, ev.PointEvent)
 	}
+}
+
+// Brushable interface
+func (PxCanvas *PxCanvas) SetColor(c color.Color, x, y int) {
+	if nrgba, ok := PxCanvas.pixelData.(*image.NRGBA); ok {
+		nrgba.Set(x, y, c)
+	}
+	if rgba, ok := PxCanvas.pixelData.(*image.RGBA); ok {
+		rgba.Set(x, y, c)
+	}
+	PxCanvas.Refresh()
+}
+
+func (PxCanvas *PxCanvas) MouseToCanvasXY(ev *desktop.MouseEvent) (*int, *int) {
+	bounds := PxCanvas.Bounds()
+	if !InBounds(ev.Position, bounds) {
+		return nil, nil
+	}
+
+	pxSize := float32(PxCanvas.PxSize)
+	xOffset := PxCanvas.CanvasOffset.X
+	yOffset := PxCanvas.CanvasOffset.Y
+
+	x := int((ev.Position.X - xOffset) / pxSize)
+	y := int((ev.Position.Y - yOffset) / pxSize)
+
+	return &x, &y
 }
