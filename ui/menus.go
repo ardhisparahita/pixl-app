@@ -6,7 +6,6 @@ import (
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/dialog"
-	"fyne.io/fyne/v2/internal/widget"
 	"fyne.io/fyne/v2/widget"
 )
 
@@ -23,10 +22,10 @@ func BuildNewMenu(app *AppInit) *fyne.MenuItem {
 			return nil
 		}
 		widthEntry := widget.NewEntry()
-		widthEntry.validator = sizeValidator
+		widthEntry.Validator = sizeValidator
 
 		heightEntry := widget.NewEntry()
-		heightEntry.validator = sizeValidator
+		heightEntry.Validator = sizeValidator
 
 		widthFormEntry := widget.NewFormItem("Width", widthEntry)
 		heightFormEntry := widget.NewFormItem("Height", heightEntry)
