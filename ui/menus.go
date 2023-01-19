@@ -48,9 +48,21 @@ func BuildNewMenu(app *AppInit) *fyne.MenuItem {
 				} else {
 					pixelHeight, _ = strconv.Atoi(heightEntry.Text)
 				}
-				app.PixlCanvas.NewDrawing(pixelHeight, pixelWidth)
+				app.PixlCanvas.NewDrawing(pixelWidth, pixelHeight)
 			}
-		})
-
+		}, app.PixlWIndow)
 	})
+}
+
+func BuildMenus(app *AppInit) *fyne.Menu {
+	return fyne.NewMenu(
+		"File",
+		BuildNewMenu(app),
+	)
+}
+
+func SetupMenus(app *AppInit) {
+	menus := BuildMenus(app)
+	mainMenu := fyne.NewMainMenu(menus)
+	app.PixlWIndow.SetMainMenu(mainMenu)
 }
