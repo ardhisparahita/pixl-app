@@ -6,7 +6,7 @@ import (
 )
 
 func (PxCanvas *PxCanvas) Scrolled(ev *fyne.ScrollEvent) {
-	PxCanvas.Scale(int(ev.Scrolled.DY))
+	PxCanvas.scale(int(ev.Scrolled.DY))
 	PxCanvas.Refresh()
 }
 

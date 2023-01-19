@@ -11,7 +11,7 @@ func (PxCanvas *PxCanvas) Pan(previousCoord, currentCoord fyne.PointEvent) {
 	PxCanvas.Refresh()
 }
 
-func (pxCanvas *PxCanvas) Scale(direction int) {
+func (pxCanvas *PxCanvas) scale(direction int) {
 	switch {
 	case direction > 0:
 		pxCanvas.PxSize += 1
