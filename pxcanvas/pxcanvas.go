@@ -19,7 +19,7 @@ type PxCanvas struct {
 	widget.BaseWidget
 	apptype.PxCanvasConfig
 	renderer    *PxCanvasRenderer
-	pixelData   image.Image
+	PixelData   image.Image
 	mouseState  PxCanvasMouseState
 	appState    *apptype.State
 	reloadImage bool
@@ -59,13 +59,13 @@ func NewPxCanvas(state *apptype.State, config apptype.PxCanvasConfig) *PxCanvas 
 		PxCanvasConfig: config,
 		appState:       state,
 	}
-	PxCanvas.pixelData = NewBlankImage(config.PxCols, config.PxRows, color.NRGBA{128, 128, 128, 255})
+	PxCanvas.PixelData = NewBlankImage(config.PxCols, config.PxRows, color.NRGBA{128, 128, 128, 255})
 	PxCanvas.ExtendBaseWidget(PxCanvas)
 	return PxCanvas
 }
 
 func (pxCanvas *PxCanvas) CreateRenderer() fyne.WidgetRenderer {
-	canvasImage := canvas.NewImageFromImage(pxCanvas.pixelData)
+	canvasImage := canvas.NewImageFromImage(pxCanvas.PixelData)
 	canvasImage.ScaleMode = canvas.ImageScalePixels
 	canvasImage.FillMode = canvas.ImageFillContain
 
@@ -92,10 +92,10 @@ func (PxCanvas *PxCanvas) TryPan(previousCoord *fyne.PointEvent, ev *desktop.Mou
 
 // Brushable interface
 func (PxCanvas *PxCanvas) SetColor(c color.Color, x, y int) {
-	if nrgba, ok := PxCanvas.pixelData.(*image.NRGBA); ok {
+	if nrgba, ok := PxCanvas.PixelData.(*image.NRGBA); ok {
 		nrgba.Set(x, y, c)
 	}
-	if rgba, ok := PxCanvas.pixelData.(*image.RGBA); ok {
+	if rgba, ok := PxCanvas.PixelData.(*image.RGBA); ok {
 		rgba.Set(x, y, c)
 	}
 	PxCanvas.Refresh()
@@ -123,7 +123,7 @@ func (PxCanvas *PxCanvas) LoadImage(img image.Image) {
 	PxCanvas.PxCanvasConfig.PxCols = dimensions.Dx()
 	PxCanvas.PxCanvasConfig.PxRows = dimensions.Dy()
 
-	PxCanvas.pixelData = img
+	PxCanvas.PixelData = img
 	PxCanvas.reloadImage = true
 	PxCanvas.Refresh()
 }
