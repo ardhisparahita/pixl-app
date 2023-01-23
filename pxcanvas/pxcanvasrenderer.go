@@ -46,7 +46,7 @@ func (renderer *PxCanvasRenderer) Layout(size fyne.Size) {
 // WidgetRenderer interface implementation
 func (renderer *PxCanvasRenderer) Refresh() {
 	if renderer.pxCanvas.reloadImage {
-		renderer.canvasImage = canvas.NewImageFromImage(renderer.pxCanvas.pixelData)
+		renderer.canvasImage = canvas.NewImageFromImage(renderer.pxCanvas.PixelData)
 		renderer.canvasImage.ScaleMode = canvas.ImageScalePixels
 		renderer.canvasImage.FillMode = canvas.ImageFillContain
 		renderer.pxCanvas.reloadImage = false
